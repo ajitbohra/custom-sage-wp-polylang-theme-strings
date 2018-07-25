@@ -1,7 +1,7 @@
 <?php
 
     /*
-    Plugin Name: Polylang Theme Strings (Blade support)
+    Plugin Name: Custom Sage Polylang Theme Strings (Blade support)
     Plugin URI: http://modeewine.com/en-polylang-theme-strings
     Description: Automatic scanning of strings translation in the theme and registration of them in Polylang plugin. Extension for Polylang plugin.
     Version: 1.0.3
@@ -266,12 +266,19 @@
                         'name'    => $theme->Name,
                         'strings' => array()
                     );
+                    $theme_paths = array();
+                    $theme_paths[] = $theme->theme_root . '/' . $theme_dir_name;
+                    $theme_paths[] = $theme->theme_root . '/' . $theme_dir_name . '/../app';
 
-                    $theme_path = $theme->theme_root . '/' . $theme_dir_name;
 
-                    if (file_exists($theme_path))
+                    if (file_exists($theme_paths[0]))
                     {
-                        $files = self::Files_Recursive_Get($theme_path);
+                        $files = array();
+                        foreach($theme_paths as $theme_path) {
+                            if (file_exists($theme_path)){
+                                $files = array_merge($files, self::Files_Recursive_Get($theme_path));
+                            }
+                        }
 
                         foreach($files as $v)
                         {
@@ -302,7 +309,10 @@
 
                         update_option(self::$prefix . $theme_dir_name . '_data', $data);
                     }
+
+
                 }
+                print_r($data);
             }
         }
 

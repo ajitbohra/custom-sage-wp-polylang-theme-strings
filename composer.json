@@ -1,9 +1,9 @@
 {
     "name": "benjaminmedia/wp-polylang-theme-strings",
     "type": "wordpress-plugin",
-    "description": "Polylang Theme Strings with support for Blade syntax",
+    "description": "Polylang Theme Strings with support for Blade syntax and Sage theme support",
     "license": "proprietary",
-    "keywords": ["plugin", "blade", "wordpress"],
+    "keywords": ["plugin", "blade", "wordpress", "Sage"],
     "authors": [
         {
             "name": "Michael Sørensen",
